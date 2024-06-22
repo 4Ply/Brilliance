@@ -10,6 +10,11 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v4
 
+      - name: set tag
+        run: |
+          version=$(awk '/DATAPACK VERSION NUMBER/ { print $5 }' "Brilliance Datapack/data/do2/functions/version.mcfunction")
+          echo "BRILLIANCE_VERSION=${version}" >> "$GITHUB_ENV"
+
       - name: zip
         run: cd "Brilliance Datapack" && zip -r brilliance-datapack.zip .
 
@@ -18,6 +23,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           make_latest: true
+          tag_name: $BRILLIANCE_VERSION
           files: |
             brilliance-datapack.zip
             LICENSE
