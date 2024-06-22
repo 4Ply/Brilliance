@@ -25,5 +25,5 @@ jobs:
           make_latest: true
           tag_name: ${{ env.BRILLIANCE_VERSION }}
           files: |
-            brilliance-datapack.zip
+            Brilliance Datapack/brilliance-datapack.zip
             LICENSE
