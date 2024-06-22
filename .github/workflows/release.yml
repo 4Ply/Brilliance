@@ -1,0 +1,23 @@
+name: zip-and-release
+on: [ push ]
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: zip
+        run: zip -r brilliance-datapack.zip .
+
+      - name: release
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main'
+        with:
+          make_latest: true
+          files: |
+            brilliance-datapack.zip
+            LICENSE
