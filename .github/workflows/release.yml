@@ -23,7 +23,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           make_latest: true
-          tag_name: $BRILLIANCE_VERSION
+          tag_name: ${{ env.BRILLIANCE_VERSION }}
           files: |
             brilliance-datapack.zip
             LICENSE
